@@ -99,19 +99,19 @@ const Navbar = () => {
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
               <a
-                href="mailto:abc@example.com"
+                href="mailto:sales@aisinask.co.in "
                 className="flex items-center gap-2 transition-colors duration-200 hover:text-[#D9A441]"
               >
                 <Mail size={14} className="text-[#D9A441]" />
-                <span>abc@example.com</span>
+                <span>sales@aisinask.co.in </span>
               </a>
 
               <a
-                href="tel:+91XXXXXXXXXX"
+                href="tel:0124-4055896."
                 className="flex items-center gap-2 transition-colors duration-200 hover:text-[#D9A441]"
               >
                 <Phone size={14} className="text-[#D9A441]" />
-                <span>+91 XXXXXXXXXX</span>
+                <span>0124-4055896.</span>
               </a>
             </div>
           </div>
