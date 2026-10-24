@@ -475,12 +475,12 @@ export default function Product15W40() {
 
           <div className="hero-copy">
             <div className="tier">econTECH</div>
-            <div className="tier-sub">MMO Motor Oil</div>
+            <div className="tier-sub">MINERAL MOTOR OIL</div>
             <div className="grade">15W-40</div>
             <div className="spec-badge">API CI4 / SL</div>
 
             <p className="hero-desc">
-              AISIN econTECH MMO 15W-40 API CI4 / SL — premium quality diesel
+              AISIN econTECH Mineral Motor Oil 15W-40 API CI4 / SL — premium quality diesel
               and gasoline engine oil for commercial vehicle applications.
             </p>
           </div>
@@ -496,9 +496,9 @@ export default function Product15W40() {
           <h2 className="section-title">Product Description</h2>
 
           <p className="description">
-            AISIN econTECH MMO 15W-40 API CI4_SL is a premium quality diesel
+            AISIN econTECH Mineral Motor Oil 15W-40 API CI4_SL is a premium quality diesel
             and gasoline engine oil, designed for severe performance
-            requirements of new generation commercial vehicles for highway
+            requirements of new generation commercial vehicles for on highway
             and off-highway operations, for diesel fuels ranging in sulphur
             content up to 0.5% by weight. It controls oil thickening and
             manages soot dispersancy.

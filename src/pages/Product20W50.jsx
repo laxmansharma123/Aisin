@@ -13,11 +13,11 @@ const features = [
   },
   {
     title: "Engine Wear",
-    text: "Helps control piston, ring and liner scuffing.",
+    text: "Control of piston, ring and liner scuffing.",
   },
   {
     title: "Bearing Protection",
-    text: "Helps control wear and corrosion of copper-containing bearings.",
+    text: "Control of wear and corrosion of copper-containing bearings.",
   },
 ];
 
@@ -504,7 +504,7 @@ export default function Product20W50() {
           <div className="application">
             <strong>Application</strong>
             Recommended for 3W, LCV gasoline and diesel vehicles. It is also
-            recommended for CNG fuel engines.
+            recommended for CNG / LPG fuel engines.
           </div>
 
           <div className="spec-strip">

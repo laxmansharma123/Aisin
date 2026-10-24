@@ -368,9 +368,7 @@ export default function ProductDetails() {
             <div className="spec-badge">API SN PLUS / SN</div>
 
             <p className="hero-desc">
-              AISIN synTECH+ Motor Oil is formulated from VHVI base oils,
-              high performance additive systems and leading-edge viscosity
-              index improver.
+              AISIN synTECH+ Fully Synthetic Motor Oil SAE 5W-40 API SN Plus / SN
             </p>
           </div>
 
@@ -382,17 +380,16 @@ export default function ProductDetails() {
         </section>
 
         <section className="content">
+          <h2 className="features-section-title">Product Description</h2>
           <p className="description">
-          
-             AISIN Fully-synthetic engine oil for petrol, CNG and light diesel engines
-            in passenger cars. This oil can be used in cars equipped with
-            catalytic converters and direct injection systems, where API SN
-            Plus / SN specifications are prescribed. Manufactured with
-            state-of-the-art additives in selected fully-synthetic base oils,
-            it offers extremely high protection in extreme conditions of
-            temperature and pressure.
+            AISIN synTECH+ Fully Synthetic Motor Oil 5W-40, API SN Plus / SN is
+            formulated for petrol, CNG and light diesel engines in passenger cars.
+            This oil can be used in cars equipped with catalytic converters and
+            direct injection systems, where API SN Plus / SN specifications are
+            prescribed. Manufactured with state-of-the-art additives in selected
+            fully-synthetic base oils, it offers extremely high protection in
+            extreme conditions of temperature and pressure.
           </p>
-
           <div className="rule" />
 
           <h2 className="features-section-title">Features</h2>

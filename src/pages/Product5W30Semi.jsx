@@ -501,12 +501,14 @@ export default function Product5W30Semi() {
         <section className="content">
           <h2 className="section-title">Product Description</h2>
 
-          {/* Fixed: removed reference to undefined products object */}
           <p className="description">
-            AISIN econTECH+ Semi Synthetic Motor Oil SAE 5W-30 API SN Plus / SN
-            is designed to provide oxidation stability, engine protection and
-            deposit control. Refer to the official product technical data sheet
-            for verified specifications and application details.
+            AISIN econTECH+ Semi Synthetic Motor Oil SAE 5W-30, API SN Plus / SN
+            is a semi-synthetic oil for petrol, CNG and light diesel engines in
+            passenger cars. This oil can be used in cars equipped with catalytic
+            converters and direct injection systems. Manufactured with
+            state-of-the-art additives in selected semi-synthetic base oils, it
+            offers extremely high protection in extreme conditions of
+            temperature and pressure.
           </p>
 
           <div className="rule" />
