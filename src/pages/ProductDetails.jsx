@@ -376,7 +376,7 @@ export default function ProductDetails() {
 
           <img
             className="bottle"
-            src="/image.png"
+            src="/5w40.png"
             alt="AISIN synTECH+ 5W-40 motor oil bottle"
           />
         </section>
@@ -384,7 +384,7 @@ export default function ProductDetails() {
         <section className="content">
           <p className="description">
           
-             AISIN Fully-synthetic engine oil for petrol, LPG and light diesel engines
+             AISIN Fully-synthetic engine oil for petrol, CNG and light diesel engines
             in passenger cars. This oil can be used in cars equipped with
             catalytic converters and direct injection systems, where API SN
             Plus / SN specifications are prescribed. Manufactured with
