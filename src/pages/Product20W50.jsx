@@ -519,7 +519,6 @@ export default function Product20W50() {
             <div className="grade">20W-50</div>
             <div className="spec-badges">
               <div className="spec-badge">API SL</div>
-              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
             </div>
 
             <p className="hero-desc">

@@ -411,7 +411,7 @@ export default function ProductDetails() {
             </div>
 
             <p className="hero-desc">
-              AISIN synTECH+ Fully Synthetic Motor Oil SAE 5W-40 API SN Plus / SN
+              AISIN synTECH+ Fully Synthetic Motor Oil SAE 5W-40 API SN Plus / SN.
             </p>
           </div>
 

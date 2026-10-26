@@ -522,7 +522,6 @@ export default function Product15W40() {
             <div className="grade">15W-40</div>
             <div className="spec-badges">
               <div className="spec-badge">API CI4 / SL</div>
-              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
             </div>
 
             <p className="hero-desc">
