@@ -139,15 +139,29 @@ export default function ProductDetails() {
           font:800 clamp(76px,10vw,120px)/.9 'Barlow Condensed',sans-serif;
           letter-spacing:-2px;
         }
-        .aisin-product .spec-badge {
-          display:inline-block;
+        .aisin-product .spec-badges {
+          display:flex;
+          flex-wrap:wrap;
+          align-items:stretch;
+          gap:10px;
           margin-top:22px;
-          padding:10px 14px;
+        }
+        .aisin-product .spec-badge {
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          height:42px;
+          min-height:42px;
+          min-width:150px;
+          padding:0 14px;
           background:var(--gold);
           color:var(--navy3);
           border-radius:3px;
           font-size:11px;
           font-weight:800;
+          line-height:1.15;
+          text-align:center;
+          white-space:normal;
         }
         .aisin-product .hero-desc {
           max-width:410px;
@@ -317,19 +331,45 @@ export default function ProductDetails() {
 
         @media(max-width:650px) {
           .aisin-product .sheet { min-height:0; }
-          .aisin-product .hero { height:570px; }
-          .aisin-product .brand { top:20px; font-size:30px; }
-          .aisin-product .kicker { top:30px; font-size:8px; }
-          .aisin-product .hero-copy { top:85px; width:88%; }
-          .aisin-product .grade { font-size:76px; }
-          .aisin-product .hero-desc { max-width:95%; }
-          .aisin-product .bottle {
-            top:300px;
-            right:4%;
-            width:47%;
-            height:250px;
+          .aisin-product .hero {
+            height:auto;
+            min-height:0;
+            display:flex;
+            flex-direction:column;
+            align-items:stretch;
+            padding:78px 5% 20px;
           }
-          .aisin-product .hero-art { top:230px; width:80%; }
+          .aisin-product .brand { top:20px; left:5%; font-size:30px; }
+          .aisin-product .kicker { top:30px; right:5%; font-size:8px; }
+          .aisin-product .hero-copy {
+            position:relative;
+            top:auto;
+            left:auto;
+            width:100%;
+            z-index:2;
+          }
+          .aisin-product .grade { font-size:clamp(64px,18vw,76px); }
+          .aisin-product .spec-badges { gap:8px; }
+          .aisin-product .spec-badge {
+            min-width:0;
+            height:42px;
+            min-height:42px;
+            padding:0 10px;
+            font-size:10px;
+          }
+          .aisin-product .hero-desc { max-width:100%; }
+          .aisin-product .bottle {
+            position:relative;
+            top:auto;
+            right:auto;
+            display:block;
+            width:min(72%,280px);
+            height:auto;
+            max-height:280px;
+            margin:18px auto 0;
+            object-fit:contain;
+          }
+          .aisin-product .hero-art { top:230px; width:80%; height:45%; }
           .aisin-product .content { padding:25px 5% 30px; }
           .aisin-product .features { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
           .aisin-product .features-section-title { font-size:25px; }
@@ -365,7 +405,10 @@ export default function ProductDetails() {
             <div className="tier">synTECH+</div>
             <div className="tier-sub">Fully Synthetic Motor Oil</div>
             <div className="grade">5W-40</div>
-            <div className="spec-badge">API SN PLUS / SN</div>
+            <div className="spec-badges">
+              <div className="spec-badge">API SN PLUS / SN</div>
+              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
+            </div>
 
             <p className="hero-desc">
               AISIN synTECH+ Fully Synthetic Motor Oil SAE 5W-40 API SN Plus / SN

@@ -210,15 +210,34 @@ export default function Product5W30Full() {
           font:800 clamp(76px,10vw,120px)/.9 'Barlow Condensed',sans-serif;
           letter-spacing:-2px;
         }
-        .aisin-full .spec-badge {
-          display:inline-block;
+        .aisin-full .spec-badges {
+          display:flex;
+          flex-wrap:wrap;
+          align-items:stretch;
+          gap:10px;
           margin-top:22px;
-          padding:10px 14px;
+        }
+        .aisin-full .spec-badge {
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          min-height:42px;
+          height:42px;
+          padding:0 14px;
           border-radius:3px;
           background:var(--gold);
           color:var(--navy3);
           font-size:11px;
           font-weight:800;
+          line-height:1.15;
+          white-space:normal;
+        }
+        .aisin-full .spec-badge:first-child {
+          min-width:150px;
+        }
+        .aisin-full .spec-badge:last-child {
+          min-width:150px;
+          text-align:center;
         }
         .aisin-full .hero-desc {
           max-width:410px;
@@ -383,24 +402,110 @@ export default function Product5W30Full() {
 
         @media(max-width:650px) {
           .aisin-full .sheet { min-height:0; }
-          .aisin-full .hero { height:570px; }
-          .aisin-full .brand { top:20px; font-size:30px; }
-          .aisin-full .kicker { top:30px; font-size:8px; }
-          .aisin-full .hero-copy { top:85px; width:88%; }
-          .aisin-full .grade { font-size:76px; }
-          .aisin-full .bottle {
-            top:300px;
-            right:4%;
-            width:47%;
-            height:250px;
+
+          /* Mobile hero: text first, bottle below, no overlap */
+          .aisin-full .hero {
+            height:auto;
+            min-height:0;
+            display:flex;
+            flex-direction:column;
+            align-items:stretch;
+            padding-bottom:18px;
           }
+
+          .aisin-full .brand {
+            top:20px;
+            left:6%;
+            font-size:30px;
+          }
+
+          .aisin-full .kicker {
+            top:30px;
+            right:5%;
+            font-size:8px;
+            letter-spacing:1px;
+          }
+
+          .aisin-full .hero-copy {
+            position:relative;
+            top:auto;
+            left:auto;
+            width:100%;
+            padding:85px 6% 0;
+            z-index:2;
+          }
+
+          .aisin-full .tier { font-size:34px; }
+
+          .aisin-full .tier-sub {
+            font-size:9px;
+            letter-spacing:1.5px;
+          }
+
+          .aisin-full .grade {
+            margin-top:16px;
+            font-size:clamp(64px,18vw,78px);
+            line-height:.92;
+            letter-spacing:-1.5px;
+          }
+
+          .aisin-full .spec-badges {
+            gap:8px;
+            margin-top:18px;
+            align-items:stretch;
+          }
+
+          .aisin-full .spec-badge {
+            min-width:0 !important;
+            width:auto;
+            max-width:100%;
+            min-height:42px;
+            height:auto;
+            padding:10px 12px;
+            font-size:10px;
+            flex:0 1 auto;
+          }
+
+          .aisin-full .hero-desc {
+            max-width:100%;
+            margin-top:14px;
+            font-size:11px;
+            line-height:1.65;
+          }
+
+          .aisin-full .bottle {
+            position:relative;
+            top:auto;
+            right:auto;
+            display:block;
+            width:min(72%,280px);
+            max-width:100%;
+            height:280px;
+            margin:18px auto 0;
+            object-fit:contain;
+            z-index:1;
+          }
+
           .aisin-full .content { padding:25px 5% 30px; }
-          .aisin-full .features { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+
+          .aisin-full .section-title { font-size:26px; }
+
+          .aisin-full .features {
+            grid-template-columns:repeat(2,minmax(0,1fr));
+            gap:12px;
+          }
+
+          .aisin-full .feature { padding:12px 10px; }
+          .aisin-full .feature h3 { font-size:11px; }
+          .aisin-full .feature p { font-size:10px; }
+
           .aisin-full .footer {
             position:static;
             flex-direction:column;
             align-items:flex-start;
+            gap:14px;
           }
+
           .aisin-full .props { overflow-x:auto; }
           .aisin-full table { min-width:520px; }
         }
@@ -423,7 +528,10 @@ export default function Product5W30Full() {
             <div className="tier">synTECH+</div>
             <div className="tier-sub">Fully Synthetic Motor Oil</div>
             <div className="grade">5W-30</div>
-            <div className="spec-badge">API SN PLUS / SN</div>
+            <div className="spec-badges">
+              <div className="spec-badge">API SN PLUS / SN</div>
+              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
+            </div>
 
             <p className="hero-desc">
               AISIN synTECH+ Fully Synthetic Motor Oil SAE 5W-30 API SN Plus / SN.

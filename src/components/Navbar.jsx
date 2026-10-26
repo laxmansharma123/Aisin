@@ -107,11 +107,11 @@ const Navbar = () => {
               </a>
 
               <a
-                href="tel:0124-4055896."
+                href="tel:0124-4055896"
                 className="flex items-center gap-2 transition-colors duration-200 hover:text-[#D9A441]"
               >
                 <Phone size={14} className="text-[#D9A441]" />
-                <span>0124-4055896.</span>
+                <span>0124-4055896</span>
               </a>
             </div>
           </div>

@@ -222,15 +222,30 @@ export default function Product15W40() {
           letter-spacing:-2px;
         }
 
-        .aisin-15w40 .spec-badge {
-          display:inline-block;
+        .aisin-15w40 .spec-badges {
+          display:flex;
+          flex-wrap:wrap;
+          align-items:stretch;
+          gap:10px;
           margin-top:22px;
-          padding:10px 14px;
+        }
+
+        .aisin-15w40 .spec-badge {
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          height:42px;
+          min-height:42px;
+          min-width:150px;
+          padding:0 14px;
           border-radius:3px;
           background:var(--gold);
           color:var(--navy3);
           font-size:11px;
           font-weight:800;
+          line-height:1.15;
+          text-align:center;
+          white-space:normal;
         }
 
         .aisin-15w40 .hero-desc {
@@ -437,16 +452,44 @@ export default function Product15W40() {
 
         @media(max-width:650px) {
           .aisin-15w40 .sheet { min-height:0; }
-          .aisin-15w40 .hero { height:570px; }
-          .aisin-15w40 .brand { top:20px; font-size:30px; }
-          .aisin-15w40 .kicker { top:30px; font-size:8px; }
-          .aisin-15w40 .hero-copy { top:85px; width:88%; }
-          .aisin-15w40 .grade { font-size:76px; }
+          .aisin-15w40 .hero {
+            height:auto;
+            min-height:0;
+            padding:76px 5% 24px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+          }
+          .aisin-15w40 .brand { top:20px; left:5%; font-size:30px; }
+          .aisin-15w40 .kicker { top:30px; right:5%; font-size:8px; }
+          .aisin-15w40 .hero-copy {
+            position:relative;
+            top:auto;
+            left:auto;
+            width:100%;
+            order:1;
+          }
+          .aisin-15w40 .grade { font-size:clamp(64px,18vw,76px); }
+          .aisin-15w40 .spec-badges { gap:8px; }
+          .aisin-15w40 .spec-badge {
+            min-width:0;
+            height:42px;
+            min-height:42px;
+            padding:0 10px;
+            font-size:10px;
+          }
+          .aisin-15w40 .hero-desc { max-width:100%; }
           .aisin-15w40 .bottle {
-            top:300px;
-            right:4%;
-            width:47%;
-            height:250px;
+            position:relative;
+            top:auto;
+            right:auto;
+            display:block;
+            order:2;
+            width:min(72%,280px);
+            height:auto;
+            max-height:280px;
+            object-fit:contain;
+            margin:18px auto 0;
           }
           .aisin-15w40 .content { padding:25px 5% 30px; }
           .aisin-15w40 .features { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
@@ -477,7 +520,10 @@ export default function Product15W40() {
             <div className="tier">econTECH</div>
             <div className="tier-sub">Mineral Motor Oil</div>
             <div className="grade">15W-40</div>
-            <div className="spec-badge">API CI4 / SL</div>
+            <div className="spec-badges">
+              <div className="spec-badge">API CI4 / SL</div>
+              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
+            </div>
 
             <p className="hero-desc">
               AISIN econTECH Mineral Motor Oil 15W-40 API CI4 / SL — premium quality diesel

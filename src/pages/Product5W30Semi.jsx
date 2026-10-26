@@ -184,15 +184,30 @@ export default function Product5W30Semi() {
           letter-spacing: -2px;
         }
 
-        .aisin-semi .spec-badge {
-          display: inline-block;
+        .aisin-semi .spec-badges {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: stretch;
+          gap: 10px;
           margin-top: 22px;
-          padding: 10px 14px;
+        }
+
+        .aisin-semi .spec-badge {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 42px;
+          min-height: 42px;
+          min-width: 150px;
+          padding: 0 14px;
           border-radius: 3px;
           background: var(--gold);
           color: var(--navy3);
           font-size: 11px;
           font-weight: 800;
+          line-height: 1.15;
+          text-align: center;
+          white-space: normal;
         }
 
         .aisin-semi .hero-desc {
@@ -395,33 +410,81 @@ export default function Product5W30Semi() {
           }
 
           .aisin-semi .hero {
-            height: 570px;
+            height: auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 82px 5% 22px;
           }
 
           .aisin-semi .brand {
-            top: 20px;
+            top: 18px;
+            left: 5%;
             font-size: 30px;
           }
 
           .aisin-semi .kicker {
-            top: 30px;
+            top: 29px;
+            right: 5%;
             font-size: 8px;
+            letter-spacing: 1px;
           }
 
           .aisin-semi .hero-copy {
-            top: 85px;
-            width: 88%;
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            z-index: 2;
+          }
+
+          .aisin-semi .tier {
+            font-size: 34px;
+          }
+
+          .aisin-semi .tier-sub {
+            font-size: 9px;
+            letter-spacing: 1.5px;
           }
 
           .aisin-semi .grade {
-            font-size: 76px;
+            margin-top: 14px;
+            font-size: clamp(64px, 18vw, 76px);
+          }
+
+          .aisin-semi .spec-badges {
+            gap: 8px;
+            margin-top: 18px;
+          }
+
+          .aisin-semi .spec-badge {
+            flex: 1 1 auto;
+            min-width: 0;
+            max-width: 100%;
+            height: auto;
+            min-height: 42px;
+            padding: 9px 10px;
+            font-size: 10px;
+          }
+
+          .aisin-semi .hero-desc {
+            max-width: none;
+            margin-top: 14px;
+            font-size: 11px;
           }
 
           .aisin-semi .bottle {
-            top: 300px;
-            right: 4%;
-            width: 47%;
-            height: 250px;
+            position: relative;
+            top: auto;
+            right: auto;
+            display: block;
+            width: min(72%, 280px);
+            height: auto;
+            max-height: 280px;
+            margin: 18px auto 0;
+            object-fit: contain;
+            z-index: 1;
           }
 
           .aisin-semi .content {
@@ -431,6 +494,19 @@ export default function Product5W30Semi() {
           .aisin-semi .features {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
+          }
+
+          .aisin-semi .feature {
+            padding: 12px 10px;
+          }
+
+          .aisin-semi .feature h3 {
+            font-size: 11px;
+            overflow-wrap: anywhere;
+          }
+
+          .aisin-semi .feature p {
+            overflow-wrap: anywhere;
           }
 
           .aisin-semi .footer {
@@ -481,7 +557,10 @@ export default function Product5W30Semi() {
             <div className="tier">econTECH+</div>
             <div className="tier-sub">Semi Synthetic Motor Oil</div>
             <div className="grade">5W-30</div>
-            <div className="spec-badge">API SN PLUS / SN</div>
+            <div className="spec-badges">
+              <div className="spec-badge">API SN PLUS / SN</div>
+              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
+            </div>
 
             <p className="hero-desc">
               AISIN econTECH+ Semi Synthetic Motor Oil SAE 5W-30 API SN Plus / SN.

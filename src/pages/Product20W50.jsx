@@ -206,15 +206,30 @@ export default function Product20W50() {
           letter-spacing:-2px;
         }
 
-        .aisin-20w50 .spec-badge {
-          display:inline-block;
+        .aisin-20w50 .spec-badges {
+          display:flex;
+          flex-wrap:wrap;
+          align-items:stretch;
+          gap:10px;
           margin-top:22px;
-          padding:10px 14px;
+        }
+
+        .aisin-20w50 .spec-badge {
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          height:42px;
+          min-height:42px;
+          min-width:150px;
+          padding:0 14px;
           border-radius:3px;
           background:var(--gold);
           color:var(--navy3);
           font-size:11px;
           font-weight:800;
+          line-height:1.15;
+          text-align:center;
+          white-space:normal;
         }
 
         .aisin-20w50 .hero-desc {
@@ -435,16 +450,43 @@ export default function Product20W50() {
 
         @media(max-width:650px) {
           .aisin-20w50 .sheet { min-height:0; }
-          .aisin-20w50 .hero { height:570px; }
-          .aisin-20w50 .brand { top:20px; font-size:30px; }
-          .aisin-20w50 .kicker { top:30px; font-size:8px; }
-          .aisin-20w50 .hero-copy { top:85px; width:88%; }
-          .aisin-20w50 .grade { font-size:76px; }
+          .aisin-20w50 .hero {
+            height:auto;
+            min-height:0;
+            padding:78px 6% 24px;
+            display:flex;
+            flex-direction:column;
+            align-items:stretch;
+          }
+          .aisin-20w50 .brand { top:20px; left:6%; font-size:30px; }
+          .aisin-20w50 .kicker { top:30px; right:6%; font-size:8px; }
+          .aisin-20w50 .hero-copy {
+            position:relative;
+            top:auto;
+            left:auto;
+            width:100%;
+            z-index:2;
+          }
+          .aisin-20w50 .grade { font-size:clamp(64px,18vw,76px); }
+          .aisin-20w50 .spec-badges { gap:8px; }
+          .aisin-20w50 .spec-badge {
+            min-width:0;
+            height:42px;
+            min-height:42px;
+            padding:0 10px;
+            font-size:10px;
+          }
           .aisin-20w50 .bottle {
-            top:300px;
-            right:4%;
-            width:47%;
-            height:250px;
+            position:relative;
+            top:auto;
+            right:auto;
+            display:block;
+            width:min(72%,280px);
+            height:auto;
+            max-height:280px;
+            object-fit:contain;
+            align-self:center;
+            margin-top:18px;
           }
           .aisin-20w50 .content { padding:25px 5% 30px; }
           .aisin-20w50 .features { grid-template-columns:1fr; gap:12px; }
@@ -475,7 +517,10 @@ export default function Product20W50() {
             <div className="tier">econTECH</div>
             <div className="tier-sub">Mineral Motor Oil</div>
             <div className="grade">20W-50</div>
-            <div className="spec-badge">API SL</div>
+            <div className="spec-badges">
+              <div className="spec-badge">API SL</div>
+              <div className="spec-badge">LSPI Protection<br />Turbocharged Engines</div>
+            </div>
 
             <p className="hero-desc">
               AISIN econTECH SAE 20W-50 API SL. Medium-duty engine oil for
