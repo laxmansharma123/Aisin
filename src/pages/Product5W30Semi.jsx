@@ -619,15 +619,15 @@ export default function Product5W30Semi() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <button
-            type="button"
+          <a
+            href="/AISIN-5W-30-Semi-TDS.png"
+            download="AISIN-5W-30-Semi-TDS.png"
             className="download"
-            onClick={downloadPDF}
-            disabled={loading}
+            style={{ textDecoration: "none" }}
           >
             <span aria-hidden="true">↓</span>
-            {loading ? "Generating PDF..." : "Download TDS"}
-          </button>
+            Download TDS
+          </a>
         </footer>
       </div>
     </main>

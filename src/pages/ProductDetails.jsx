@@ -445,8 +445,8 @@ export default function ProductDetails() {
 
           <a
             className="download"
-            href="/AISIN-Technical-Data-Sheet.pdf"
-            download="AISIN-Technical-Data-Sheet.pdf"
+            href="/AISIN-5W-40-Full-TDS.png"
+            download="AISIN-5W-40-Full-TDS.png"
           >
             <span aria-hidden="true">↓</span>
             Download TDS

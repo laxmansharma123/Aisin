@@ -4,20 +4,19 @@ import html2pdf from "html2pdf.js";
 
 const features = [
   {
-    title: "Engine Applications",
-    text: "Intended for on-road engines for light to medium duty applications running with gasoline, CNG or diesel fuels.",
-  },
-  {
     title: "Piston Deposits",
-    text: "Provides control of piston deposits.",
+    text: "Piston deposits",
+    iconIndex: 1,
   },
   {
     title: "Engine Wear",
-    text: "Control of piston, ring and liner scuffing.",
+    text: "Piston, ring and liner scuffing",
+    iconIndex: 2,
   },
   {
     title: "Bearing Protection",
-    text: "Control of wear and corrosion of copper-containing bearings.",
+    text: "Wear and corrosion of copper-containing bearings",
+    iconIndex: 3,
   },
 ];
 
@@ -262,9 +261,23 @@ export default function Product20W50() {
 
         .aisin-20w50 .features {
           display:grid;
-          grid-template-columns:repeat(2,minmax(0,1fr));
+          grid-template-columns:repeat(3,minmax(0,1fr));
           gap:18px;
           margin-bottom:24px;
+        }
+
+        .aisin-20w50 .features-intro {
+          margin:0 0 16px;
+          font-size:12px;
+          line-height:1.75;
+          color:#333;
+        }
+
+        .aisin-20w50 .features-lead {
+          margin:0 0 14px;
+          color:var(--navy);
+          font-size:16px;
+          font-weight:800;
         }
 
         .aisin-20w50 .feature {
@@ -491,10 +504,17 @@ export default function Product20W50() {
 
           <h2 className="section-title">Features</h2>
 
+          <p className="features-intro">
+            Intended for on-road engines for light to medium duty applications
+            running with gasoline, CNG or diesel fuels.
+          </p>
+
+          <p className="features-lead">It provides control of:</p>
+
           <div className="features">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <article className="feature" key={feature.title}>
-                <FeatureIcon index={index} />
+                <FeatureIcon index={feature.iconIndex} />
                 <h3>{feature.title}</h3>
                 <p>{feature.text}</p>
               </article>
@@ -548,15 +568,15 @@ export default function Product20W50() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <button
-            type="button"
+          <a
+            href="/AISIN-20W-50-TDS.png"
+            download="AISIN-20W-50-TDS.png"
             className="download"
-            onClick={downloadPDF}
-            disabled={loading}
+            style={{ textDecoration: "none" }}
           >
             <span aria-hidden="true">↓</span>
-            {loading ? "Generating PDF..." : "Download TDS"}
-          </button>
+            Download TDS
+          </a>
         </footer>
       </div>
     </main>

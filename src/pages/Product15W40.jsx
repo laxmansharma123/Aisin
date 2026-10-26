@@ -210,7 +210,7 @@ export default function Product15W40() {
 
         .aisin-15w40 .tier-sub {
           margin-top:3px;
-          color:#ffffffaa;
+          color:#b8b8c7;
           font-size:10px;
           letter-spacing:2px;
           text-transform:uppercase;
@@ -475,7 +475,7 @@ export default function Product15W40() {
 
           <div className="hero-copy">
             <div className="tier">econTECH</div>
-            <div className="tier-sub">MINERAL MOTOR OIL</div>
+            <div className="tier-sub">Mineral Motor Oil</div>
             <div className="grade">15W-40</div>
             <div className="spec-badge">API CI4 / SL</div>
 
@@ -568,15 +568,15 @@ export default function Product15W40() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <button
-            type="button"
+          <a
+            href="/AISIN-15W-40-TDS.png"
+            download="AISIN-15W-40-TDS.png"
             className="download"
-            onClick={downloadPDF}
-            disabled={loading}
+            style={{ textDecoration: "none" }}
           >
             <span aria-hidden="true">↓</span>
-            {loading ? "Generating PDF..." : "Download TDS"}
-          </button>
+            Download TDS
+          </a>
         </footer>
       </div>
     </main>
