@@ -44,14 +44,39 @@ export default function Product5W30Semi() {
   const [loading, setLoading] = useState(false);
 
   const downloadPDF = async () => {
-    if (!sheetRef.current || loading) return;
+    if (loading) return;
 
     setLoading(true);
 
     try {
-      if (document.fonts?.ready) {
-        await document.fonts.ready;
-      }
+      const imageUrl = "/AISIN-5W-30-Semi-TDS.png";
+      const image = new Image();
+      image.crossOrigin = "anonymous";
+      image.src = imageUrl;
+
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = () => reject(new Error(`TDS image not found: ${imageUrl}`));
+      });
+
+      const wrapper = document.createElement("div");
+      wrapper.style.width = "210mm";
+      wrapper.style.height = "297mm";
+      wrapper.style.margin = "0";
+      wrapper.style.padding = "0";
+      wrapper.style.background = "#ffffff";
+      wrapper.style.display = "flex";
+      wrapper.style.alignItems = "center";
+      wrapper.style.justifyContent = "center";
+
+      image.style.display = "block";
+      image.style.width = "210mm";
+      image.style.height = "297mm";
+      image.style.maxWidth = "none";
+      image.style.maxHeight = "none";
+      image.style.objectFit = "contain";
+      wrapper.appendChild(image);
+      document.body.appendChild(wrapper);
 
       await html2pdf()
         .set({
@@ -71,11 +96,13 @@ export default function Product5W30Semi() {
           },
           pagebreak: { mode: ["css", "legacy"] },
         })
-        .from(sheetRef.current)
+        .from(wrapper)
         .save();
+
+      document.body.removeChild(wrapper);
     } catch (error) {
       console.error("PDF generation error:", error);
-      alert("PDF generate nahi hui. Browser console check karo.");
+      alert("PDF generate nahi hui. Check karo ki AISIN-5W-30-Semi-TDS.png public folder mein hai.");
     } finally {
       setLoading(false);
     }
@@ -698,15 +725,15 @@ export default function Product5W30Semi() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <a
-            href="/AISIN-5W-30-Semi-TDS.png"
-            download="AISIN-5W-30-Semi-TDS.png"
+          <button
+            type="button"
+            onClick={downloadPDF}
+            disabled={loading}
             className="download"
-            style={{ textDecoration: "none" }}
           >
             <span aria-hidden="true">↓</span>
-            Download TDS
-          </a>
+            {loading ? "Generating PDF..." : "Download TDS"}
+          </button>
         </footer>
       </div>
     </main>

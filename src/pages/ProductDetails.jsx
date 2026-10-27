@@ -1,4 +1,5 @@
 
+import { jsPDF } from "jspdf";
 const properties = [
   ["Appearance", "Visual", "Clear"],
   ["Density @ 29.5 °C, gm/ml", "ASTM D-1298", "0.838"],
@@ -49,6 +50,44 @@ function FeatureIcon({ index }) {
 }
 
 export default function ProductDetails() {
+  const downloadTDS = async () => {
+    try {
+      const image = new Image();
+      image.src = "/AISIN-5W-40-Full-TDS.png";
+
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = reject;
+      });
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const ratio = Math.min(pageWidth / image.width, pageHeight / image.height);
+      const width = image.width * ratio;
+      const height = image.height * ratio;
+
+      pdf.addImage(
+        image,
+        "PNG",
+        (pageWidth - width) / 2,
+        (pageHeight - height) / 2,
+        width,
+        height
+      );
+
+      pdf.save("AISIN-5W-40-Full-TDS.pdf");
+    } catch (error) {
+      console.error("TDS PDF download failed:", error);
+      alert("TDS PDF download nahi ho paayi. Please dobara try karein.");
+    }
+  };
+
   return (
     <main className="aisin-product">
       <style>{`
@@ -369,7 +408,6 @@ export default function ProductDetails() {
             margin:18px auto 0;
             object-fit:contain;
           }
-          .aisin-product .hero-art { top:230px; width:80%; height:45%; }
           .aisin-product .content { padding:25px 5% 30px; }
           .aisin-product .features { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
           .aisin-product .features-section-title { font-size:25px; }
@@ -486,14 +524,15 @@ export default function ProductDetails() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <a
+          <button
+            type="button"
             className="download"
-            href="/AISIN-5W-40-Full-TDS.png"
-            download="AISIN-5W-40-Full-TDS.png"
+            onClick={downloadTDS}
+            style={{ border: 0, cursor: "pointer", fontFamily: "inherit" }}
           >
             <span aria-hidden="true">↓</span>
             Download TDS
-          </a>
+          </button>
         </footer>
       </div>
     </main>

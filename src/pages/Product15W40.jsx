@@ -74,51 +74,57 @@ export default function Product15W40() {
   const [loading, setLoading] = useState(false);
 
   const downloadPDF = async () => {
-    if (!sheetRef.current || loading) return;
+    if (loading) return;
 
     setLoading(true);
 
     try {
-      if (document.fonts?.ready) {
-        await document.fonts.ready;
+      const image = new Image();
+      image.src = "/AISIN-15W-40-TDS.png";
+
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = () => reject(new Error("TDS image could not be loaded"));
+      });
+
+      const pdfContent = document.createElement("div");
+      pdfContent.style.width = "794px";
+      pdfContent.style.margin = "0";
+      pdfContent.style.padding = "0";
+      pdfContent.style.background = "#ffffff";
+      image.style.display = "block";
+      image.style.width = "100%";
+      image.style.height = "auto";
+      pdfContent.appendChild(image);
+      document.body.appendChild(pdfContent);
+
+      try {
+        await html2pdf()
+          .set({
+            margin: 0,
+            filename: "AISIN-15W-40-TDS.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              backgroundColor: "#ffffff",
+              logging: false,
+            },
+            jsPDF: {
+              unit: "mm",
+              format: "a4",
+              orientation: "portrait",
+            },
+            pagebreak: { mode: ["css", "legacy"] },
+          })
+          .from(pdfContent)
+          .save();
+      } finally {
+        document.body.removeChild(pdfContent);
       }
-
-      const images = Array.from(sheetRef.current.querySelectorAll("img"));
-
-      await Promise.all(
-        images.map((img) => {
-          if (img.complete) return Promise.resolve();
-
-          return new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          });
-        })
-      );
-
-      await html2pdf()
-        .set({
-          margin: 0,
-          filename: "AISIN-econTECH-15W-40-API-CI4-SL-TDS.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff",
-            logging: false,
-          },
-          jsPDF: {
-            unit: "mm",
-            format: "a4",
-            orientation: "portrait",
-          },
-          pagebreak: { mode: ["css", "legacy"] },
-        })
-        .from(sheetRef.current)
-        .save();
     } catch (error) {
       console.error("PDF generation failed:", error);
-      alert("PDF generate nahi hui. Browser console check karo.");
+      alert("PDF generate nahi hui. Public folder mein AISIN-15W-40-TDS.png check karo.");
     } finally {
       setLoading(false);
     }
@@ -613,15 +619,15 @@ export default function Product15W40() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <a
-            href="/AISIN-15W-40-TDS.png"
-            download="AISIN-15W-40-TDS.png"
+          <button
+            type="button"
+            onClick={downloadPDF}
             className="download"
-            style={{ textDecoration: "none" }}
+            disabled={loading}
           >
             <span aria-hidden="true">↓</span>
-            Download TDS
-          </a>
+            {loading ? "Generating PDF..." : "Download TDS"}
+          </button>
         </footer>
       </div>
     </main>

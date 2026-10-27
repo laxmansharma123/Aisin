@@ -75,51 +75,70 @@ export default function Product5W30Full() {
   const [loading, setLoading] = useState(false);
 
   const downloadPDF = async () => {
-    if (!sheetRef.current || loading) return;
+    if (loading) return;
 
     setLoading(true);
 
     try {
-      if (document.fonts?.ready) {
-        await document.fonts.ready;
+      const response = await fetch("/AISIN-5W-30-Full-TDS.png");
+      if (!response.ok) {
+        throw new Error("TDS PNG file could not be loaded.");
       }
 
-      const images = Array.from(sheetRef.current.querySelectorAll("img"));
+      const imageBlob = await response.blob();
+      const imageUrl = URL.createObjectURL(imageBlob);
+      const image = new Image();
 
-      await Promise.all(
-        images.map((img) => {
-          if (img.complete) return Promise.resolve();
+      try {
+        await new Promise((resolve, reject) => {
+          image.onload = resolve;
+          image.onerror = () => reject(new Error("TDS PNG image could not be opened."));
+          image.src = imageUrl;
+        });
 
-          return new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          });
-        })
-      );
+        const wrapper = document.createElement("div");
+        wrapper.style.width = "794px";
+        wrapper.style.background = "#ffffff";
+        wrapper.style.margin = "0";
+        wrapper.style.padding = "0";
+        wrapper.style.lineHeight = "0";
 
-      await html2pdf()
-        .set({
-          margin: 0,
-          filename: "AISIN-synTECH-5W-30-Fully-Synthetic-TDS.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff",
-            logging: false,
-          },
-          jsPDF: {
-            unit: "mm",
-            format: "a4",
-            orientation: "portrait",
-          },
-          pagebreak: { mode: ["css", "legacy"] },
-        })
-        .from(sheetRef.current)
-        .save();
+        image.style.display = "block";
+        image.style.width = "100%";
+        image.style.height = "auto";
+        image.style.margin = "0";
+        image.style.padding = "0";
+
+        wrapper.appendChild(image);
+
+        await html2pdf()
+          .set({
+            margin: 0,
+            filename: "AISIN-synTECH-5W-30-Fully-Synthetic-TDS.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              backgroundColor: "#ffffff",
+              logging: false,
+            },
+            jsPDF: {
+              unit: "mm",
+              format: "a4",
+              orientation: "portrait",
+            },
+            pagebreak: { mode: ["css", "legacy"] },
+          })
+          .from(wrapper)
+          .save();
+
+        wrapper.remove();
+      } finally {
+        URL.revokeObjectURL(imageUrl);
+      }
     } catch (error) {
       console.error("PDF generation failed:", error);
-      alert("PDF generate nahi hui. Browser console check karo.");
+      alert("PDF generate nahi hui. Check karo ki public/AISIN-5W-30-Full-TDS.png file available hai.");
     } finally {
       setLoading(false);
     }
@@ -615,15 +634,15 @@ export default function Product5W30Full() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <a
-            href="/AISIN-5W-30-Full-TDS.png"
-            download="AISIN-5W-30-Full-TDS.png"
+          <button
+            type="button"
             className="download"
-            style={{ textDecoration: "none" }}
+            onClick={downloadPDF}
+            disabled={loading}
           >
             <span aria-hidden="true">↓</span>
-            Download TDS
-          </a>
+            {loading ? "Generating PDF..." : "Download TDS"}
+          </button>
         </footer>
       </div>
     </main>

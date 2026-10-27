@@ -1,6 +1,6 @@
 
 import { useRef, useState } from "react";
-import html2pdf from "html2pdf.js";
+import { jsPDF } from "jspdf";
 
 const features = [
   {
@@ -58,51 +58,38 @@ export default function Product20W50() {
   const [loading, setLoading] = useState(false);
 
   const downloadPDF = async () => {
-    if (!sheetRef.current || loading) return;
+    if (loading) return;
 
     setLoading(true);
 
     try {
-      if (document.fonts?.ready) {
-        await document.fonts.ready;
-      }
+      const image = new Image();
+      image.src = "/AISIN-20W-50-TDS.png";
 
-      const images = Array.from(sheetRef.current.querySelectorAll("img"));
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = () => reject(new Error("TDS image could not be loaded."));
+      });
 
-      await Promise.all(
-        images.map((img) => {
-          if (img.complete) return Promise.resolve();
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
 
-          return new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          });
-        })
-      );
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const ratio = Math.min(pageWidth / image.width, pageHeight / image.height);
+      const width = image.width * ratio;
+      const height = image.height * ratio;
+      const x = (pageWidth - width) / 2;
+      const y = (pageHeight - height) / 2;
 
-      await html2pdf()
-        .set({
-          margin: 0,
-          filename: "AISIN-econTECH-20W-50-API-SL-TDS.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff",
-            logging: false,
-          },
-          jsPDF: {
-            unit: "mm",
-            format: "a4",
-            orientation: "portrait",
-          },
-          pagebreak: { mode: ["css", "legacy"] },
-        })
-        .from(sheetRef.current)
-        .save();
+      pdf.addImage(image, "PNG", x, y, width, height);
+      pdf.save("AISIN-econTECH-20W-50-API-SL-TDS.pdf");
     } catch (error) {
       console.error("PDF generation failed:", error);
-      alert("PDF generate nahi hui. Browser console check karo.");
+      alert("PDF generate nahi hui. Public folder mein AISIN-20W-50-TDS.png ka path check karo.");
     } finally {
       setLoading(false);
     }
@@ -612,15 +599,15 @@ export default function Product20W50() {
         <footer className="footer">
           <div className="footer-tag">We Touch the Future</div>
 
-          <a
-            href="/AISIN-20W-50-TDS.png"
-            download="AISIN-20W-50-TDS.png"
+          <button
+            type="button"
+            onClick={downloadPDF}
             className="download"
-            style={{ textDecoration: "none" }}
+            disabled={loading}
           >
             <span aria-hidden="true">↓</span>
-            Download TDS
-          </a>
+            {loading ? "Preparing PDF..." : "Download TDS"}
+          </button>
         </footer>
       </div>
     </main>
