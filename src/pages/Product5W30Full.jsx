@@ -197,6 +197,16 @@ export default function Product5W30Full() {
           font:800 36px 'Barlow Condensed',sans-serif;
           letter-spacing:1px;
         }
+        .aisin-full .brand-logo {
+          position:absolute;
+          top:28px;
+          left:6%;
+          width:105px;
+          height:auto;
+          display:block;
+          object-fit:contain;
+          z-index:3;
+        }
         .aisin-full .kicker {
           position:absolute;
           top:40px;
@@ -437,6 +447,11 @@ export default function Product5W30Full() {
             left:6%;
             font-size:30px;
           }
+          .aisin-full .brand-logo {
+            top:20px;
+            left:6%;
+            width:88px;
+          }
 
           .aisin-full .kicker {
             top:30px;
@@ -540,7 +555,7 @@ export default function Product5W30Full() {
             <polygon points="400,0 460,0 190,600 130,600" fill="#D4A646" opacity=".4" />
           </svg>
 
-          <div className="brand">AISIN</div>
+          <img className="brand-logo" src="/image.png" alt="AISIN" />
           <div className="kicker">Technical Data Sheet</div>
 
           <div className="hero-copy">

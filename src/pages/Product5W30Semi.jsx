@@ -577,7 +577,7 @@ export default function Product5W30Semi() {
             />
           </svg>
 
-          <div className="brand">AISIN</div>
+          <img className="brand" src="/image.png" alt="AISIN" style={{ width: "105px", height: "auto", objectFit: "contain" }} />
           <div className="kicker">Technical Data Sheet</div>
 
           <div className="hero-copy">

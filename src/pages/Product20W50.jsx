@@ -152,8 +152,11 @@ export default function Product20W50() {
           position:absolute;
           top:28px;
           left:6%;
-          font:800 36px 'Barlow Condensed',sans-serif;
-          letter-spacing:1px;
+          width:105px;
+          height:auto;
+          max-height:38px;
+          object-fit:contain;
+          object-position:left center;
         }
 
         .aisin-20w50 .kicker {
@@ -445,7 +448,7 @@ export default function Product20W50() {
             flex-direction:column;
             align-items:stretch;
           }
-          .aisin-20w50 .brand { top:20px; left:6%; font-size:30px; }
+          .aisin-20w50 .brand { top:20px; left:6%; width:90px; max-height:32px; }
           .aisin-20w50 .kicker { top:30px; right:6%; font-size:8px; }
           .aisin-20w50 .hero-copy {
             position:relative;
@@ -497,7 +500,7 @@ export default function Product20W50() {
             <polygon points="400,0 460,0 190,600 130,600" fill="#D4A646" opacity=".4" />
           </svg>
 
-          <div className="brand">AISIN</div>
+          <img className="brand" src="/image.png" alt="AISIN" />
           <div className="kicker">Technical Data Sheet</div>
 
           <div className="hero-copy">

@@ -183,12 +183,14 @@ export default function Product15W40() {
           opacity:.38;
         }
 
-        .aisin-15w40 .brand {
+        .aisin-15w40 .brand-logo {
           position:absolute;
           top:28px;
           left:6%;
-          font:800 36px 'Barlow Condensed',sans-serif;
-          letter-spacing:1px;
+          width:100px;
+          height:auto;
+          object-fit:contain;
+          z-index:3;
         }
 
         .aisin-15w40 .kicker {
@@ -466,7 +468,7 @@ export default function Product15W40() {
             flex-direction:column;
             align-items:center;
           }
-          .aisin-15w40 .brand { top:20px; left:5%; font-size:30px; }
+          .aisin-15w40 .brand-logo { top:20px; left:5%; width:90px; }
           .aisin-15w40 .kicker { top:30px; right:5%; font-size:8px; }
           .aisin-15w40 .hero-copy {
             position:relative;
@@ -519,7 +521,7 @@ export default function Product15W40() {
             <polygon points="400,0 460,0 190,600 130,600" fill="#D4A646" opacity=".4" />
           </svg>
 
-          <div className="brand">AISIN</div>
+          <img className="brand-logo" src="/image.png" alt="AISIN" />
           <div className="kicker">Technical Data Sheet</div>
 
           <div className="hero-copy">

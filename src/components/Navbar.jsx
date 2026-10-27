@@ -127,9 +127,11 @@ const Navbar = () => {
               onClick={closeMobileMenu}
               className="group flex shrink-0 items-center gap-3"
             >
-              <span className="text-2xl font-extrabold tracking-[0.12em] text-white transition-colors group-hover:text-[#D9A441] sm:text-3xl">
-                AISIN
-              </span>
+              <img
+                src="/image.png"
+                alt="AISIN"
+                className="h-9 w-auto object-contain sm:h-10"
+              />
 
               <span className="hidden h-9 w-px bg-white/20 sm:block" />
 
